@@ -6,7 +6,19 @@ const postRoutes = require('./routes/post.routes')
 require('dotenv').config({ path: './config/.env' })
 require('./config/db')
 const { checkUser, requireAuth } = require('./middleware/auth.middleware')
+const cors = require('cors')
+
 const app = express()
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  allowedHeaders: ['sessionId', 'Content-Type'],
+  exposedHeaders: ['sessionId'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false
+}
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -24,4 +36,4 @@ app.listen(process.env.PORT, () =>
   console.log(`Listening on port ${process.env.PORT}`)
 )
 
-// [Javascript Full-stack] Projet MERN | Créer un réseau social | Partie Back-end | 3:34:46
+// [Javascript Full-stack] Projet MERN | Créer un réseau social | Partie Front-end | 2:06:10
