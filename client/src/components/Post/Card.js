@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { isEmpty } from '../Utils'
+import FollowHandler from '../Profile/FollowHandler'
+import { dateParser, isEmpty } from '../Utils'
+import LikeButton from './LikeButton'
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true)
   const usersData = useSelector(state => state.usersReducer)
-  console.log(usersData)
   const userData = useSelector(state => state.userReducer)
 
   useEffect(() => {
@@ -42,7 +43,34 @@ const Card = ({ post }) => {
                       })
                       .join('')}
                 </h3>
+                {post.posterId !== userData._id && (
+                  <FollowHandler idToFollow={post.posterId} type='cart' />
+                )}
               </div>
+              <span>{dateParser(post.createdAt)}</span>
+            </div>
+            <p>{post.message}</p>
+            {post.message && (
+              <img src={post.picture} alt='card-pic' className='card-pic' />
+            )}
+            {post.video && (
+              <iframe
+                width='500'
+                height='300'
+                src={post.video}
+                frameBorder='0'
+                allow='accelerometr; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+                title={post._id}
+              />
+            )}
+            <div className='card-footer'>
+              <div className='comment-icon'>
+                <img src='./img/icons/message1.svg' alt='comment' />
+                <span>{post.comments.length}</span>
+              </div>
+              <LikeButton post={post} />
+              <img src='./img/icons/share.svg' alt='share' />
             </div>
           </div>
         </>
