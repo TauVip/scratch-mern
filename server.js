@@ -36,4 +36,4 @@ app.listen(process.env.PORT, () =>
   console.log(`Listening on port ${process.env.PORT}`)
 )
 
-// [Javascript Full-stack] Projet MERN | Créer un réseau social | Partie Front-end | 5:30:18
+// [Javascript Full-stack] Projet MERN | Créer un réseau social | Partie Front-end | 6:24:10

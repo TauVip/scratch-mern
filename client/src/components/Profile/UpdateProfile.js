@@ -85,6 +85,7 @@ const UpdateProfile = () => {
                       </li>
                     )
                 }
+                return null
               })}
             </ul>
           </div>
@@ -114,6 +115,7 @@ const UpdateProfile = () => {
                       </li>
                     )
                 }
+                return null
               })}
             </ul>
           </div>
